@@ -11,42 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\landingController;
 
-Route::get('/about', function () {
-    return view('welcome');
-});
+Route::get('/', 'landingController@index')->name('landing.index');
 
-Route::get('/properties', function () {
-    return view('welcome');
-});
+Route::get('/about', 'aboutController@index')->name('about.index');
 
-Route::get('/cash', function () {
-    return view('welcome');
-});
+Route::get('/properties', 'propertiesController@index')->name('properties.index');
 
-Route::get('/capital', function () {
-    return view('welcome');
-});
+Route::get('/cash', 'cashController@index')->name('cash.index');
 
-Route::get('/learning', function () {
-    return view('welcome');
-});
+Route::get('/capital', 'capitalController@index')->name('capital.index');
 
-Route::get('/media', function () {
-    return view('welcome');
-});
+Route::get('/learning', 'learningController@index')->name('learning.index');
 
-Route::get('/careers', function () {
-    return view('welcome');
-});
+Route::get('/learning/{article}', 'singlePostController@show')->name('learning.show');
 
-Route::get('/support', function () {
-    return view('welcome');
-});
+Route::get('/media', 'mediaController@index')->name('media.index');
+
+Route::get('/media/{video}', 'singleVideoController@show')->name('careers.show');
+
+Route::get('/careers', 'careersController@index')->name('careers.index');
+
+Route::get('/careers/{career}', 'singleCareerController@show')->name('careers.show');
+
+Route::get('/support', 'supportController@index')->name('support.index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home.index');

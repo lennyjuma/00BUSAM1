@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\role;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,7 +35,16 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
         // add logic for checking user role to decide where to redirect i think
-        return '/home';
+        $roleId = Auth::user()->role_id;
+        $role_name = role::find($roleId)->role_name;
+
+        if ('admin' === $role_name) :
+            return '/home';
+        elseif ('user' === $role_name):
+            return '/';
+        endif;
+
+        return '/';
     }
 
     /**
