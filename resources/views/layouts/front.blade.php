@@ -12,6 +12,18 @@
     <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
     <link href="{{ URL::asset('images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
     <link href="{{ URL::asset('images/webclip.png') }}" rel="apple-touch-icon">
+    <style>
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-family: Roboto, sans-serif;
+            color: #c34028;
+            font-size: 24px;
+            line-height: 30px;
+            font-weight: 300;
+            text-align: left;
+        }
+    </style>
 </head>
 <body class="@yield('bodyClass')">
 {{-- Navbar --}}

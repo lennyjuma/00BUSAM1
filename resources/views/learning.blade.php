@@ -2,19 +2,43 @@
 @section('title', 'Blog')
 @section('bodyClass', 'learning')
 @section('content')
-    <div class="section-2">
+    <div class="section-2" style="padding-top: 10px;">
         <div class="w-row">
-            <div class="column-48 w-col w-col-8"><a href="/learning/1" class="link-block-18 w-inline-block"><img src="images/ape7.png" srcset="images/ape7-p-500.png 500w, images/ape7-p-800.png 800w, images/ape7.png 895w" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, 65vw" alt=""><div class="div-block-27"><div class="text-block-62">How to use the Busam Cash App</div></div></a></div>
+            <div class="column-48 w-col w-col-8">
+                <div style="height: auto;" data-animation="slide" data-duration="500" data-infinite="1" class="w-slider">
+                    <div class="w-slider-mask">
+                        {{--trending--}}
+                        @foreach($trending as $article)
+                            <div class="w-slide" style="background-image: url({{ $article->images->full->source_url }}); height: 550px;">
+                                <a href="/learning/{{ $article->id }}" class="link-block-18 w-inline-block">
+                                    <div class="div-block-27">
+                                        <div class="text-block-62">
+                                            {{ $article->title->rendered }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="w-slider-arrow-left">
+                        <div class="w-icon-slider-left"></div>
+                    </div>
+                    <div class="w-slider-arrow-right">
+                        <div class="w-icon-slider-right"></div>
+                    </div>
+                    <div class="w-slider-nav w-round"></div>
+                </div>
+            </div>
             <div class="w-col w-col-4">
-                <div class="div-block-28"><img src="images/note.png" alt="" class="image-19">
-                    <div class="text-block-63">Your credit score</div>
-                    <div class="text-block-65">Lorem ipsum dolor sit amet, consectetur adipisicing elit, soluptatem quia voluptas</div><a href="/learning/1" class="link-6">Learn More</a></div>
-                <div class="div-block-28 _2"><img src="images/note.png" alt="" class="image-19">
-                    <div class="text-block-63">Buying Property</div>
-                    <div class="text-block-65">Lorem ipsum dolor sit amet, consectetur adipisicing elit, soluptatem quia voluptas</div><a href="/learning/1" class="link-6">Learn More</a></div>
-                <div class="div-block-28 _2"><img src="images/note.png" alt="" class="image-19">
-                    <div class="text-block-63">Earn Points</div>
-                    <div class="text-block-65">Lorem ipsum dolor sit amet, consectetur adipisicing elit, soluptatem quia voluptas</div><a href="/learning/1" class="link-6">Learn More</a></div>
+                {{--latest--}}
+                @foreach($latestSide as $article)
+                    <div class="div-block-28">
+                        <img src="images/note.png" alt="" class="image-19">
+                        <div class="text-block-63">{{ $article->title->rendered }}</div>
+                        <div class="text-block-65">{!! $article->excerpt->rendered !!}</div>
+                        <a href="/learning/{{ $article->id }}" class="link-6">Learn More</a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -33,40 +57,55 @@
             </div>
             <div class="w-tab-content">
                 <div data-w-tab="Tab 1" class="w-tab-pane">
-                    <div class="w-row">
-                        <div class="column-38 w-col w-col-4"><a href="#" class="link-block-19 w-inline-block"><img src="images/How-to-use-app.png" alt=""><div class="div-block-29"><div class="text-block-69">How to use the App</div></div></a></div>
-                        <div class="column-39 w-col w-col-4"><a href="#" class="link-block-19 w-inline-block"><img src="images/Buying-Properties.png" alt=""><div class="div-block-29"><div class="text-block-69">Buying Property</div></div></a></div>
-                        <div class="column-40 w-col w-col-4"><a href="#" class="link-block-19 w-inline-block"><img src="images/Earn-Points.png" alt=""><div class="div-block-29"><div class="text-block-69">How to use the App</div></div></a></div>
-                    </div>
-                    <div class="columns-14 w-row">
-                        <div class="column-38 w-col w-col-4"><a href="#" class="link-block-19 w-inline-block"><img src="images/Budget-Planning.png" alt=""><div class="div-block-29"><div class="text-block-69">Budget Planning</div></div></a></div>
-                        <div class="column-39 w-col w-col-4"><a href="#" class="link-block-19 w-inline-block"><img src="images/How-to-use-app.png" alt=""><div class="div-block-29"><div class="text-block-69">How to use the App</div></div></a></div>
-                        <div class="column-40 w-col w-col-4"><a href="#" class="link-block-19 w-inline-block"><img src="images/Buying-Properties.png" alt=""><div class="div-block-29"><div class="text-block-69">Buying Property</div></div></a></div>
-                    </div>
+                    {{--popular--}}
+                    @foreach($popular->chunk(3) as $popularChunk)
+                        <div class="w-row">
+                            @foreach($popularChunk as $article)
+                                <div class="column-38 w-col w-col-4">
+                                    <a href="/learning/{{ $article->id }}" class="link-block-19 w-inline-block">
+                                        <img src="{{ $article->images->full->source_url }}" style="height: 300px;" alt="">
+                                        <div class="div-block-29">
+                                            <div class="text-block-69">{{ $article->title->rendered }}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
                 <div data-w-tab="Tab 2" class="w-tab-pane w--tab-active">
-                    <div class="w-row">
-                        <div class="column-38 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/How-to-use-app.png" alt=""><div class="div-block-29"><div class="text-block-69">How to use the App</div></div></a></div>
-                        <div class="column-39 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/Buying-Properties.png" alt=""><div class="div-block-29"><div class="text-block-69">Buying Property</div></div></a></div>
-                        <div class="column-40 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/Earn-Points.png" alt=""><div class="div-block-29"><div class="text-block-69">How to use the App</div></div></a></div>
-                    </div>
-                    <div class="columns-14 w-row">
-                        <div class="column-38 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/Budget-Planning.png" alt=""><div class="div-block-29"><div class="text-block-69">Budget Planning</div></div></a></div>
-                        <div class="column-39 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/How-to-use-app.png" alt=""><div class="div-block-29"><div class="text-block-69">How to use the App</div></div></a></div>
-                        <div class="column-40 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/Buying-Properties.png" alt=""><div class="div-block-29"><div class="text-block-69">Buying Property</div></div></a></div>
-                    </div>
+                    {{--latest--}}
+                    @foreach($latest->chunk(3) as $latestChunk)
+                        <div class="w-row">
+                            @foreach($latestChunk as $article)
+                                <div class="column-38 w-col w-col-4">
+                                    <a href="/learning/{{ $article->id }}" class="link-block-19 w-inline-block">
+                                        <img src="{{ $article->images->full->source_url }}" style="height: 300px;" alt="">
+                                        <div class="div-block-29">
+                                            <div class="text-block-69">{{ $article->title->rendered }}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
                 <div data-w-tab="Tab 3" class="w-tab-pane">
-                    <div class="columns-14 w-row">
-                        <div class="column-38 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/Budget-Planning.png" alt=""><div class="div-block-29"><div class="text-block-69">Budget Planning</div></div></a></div>
-                        <div class="column-39 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/How-to-use-app.png" alt=""><div class="div-block-29"><div class="text-block-69">How to use the App</div></div></a></div>
-                        <div class="column-40 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/Buying-Properties.png" alt=""><div class="div-block-29"><div class="text-block-69">Buying Property</div></div></a></div>
-                    </div>
-                    <div class="columns-14 w-row">
-                        <div class="column-38 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/Budget-Planning.png" alt=""><div class="div-block-29"><div class="text-block-69">Budget Planning</div></div></a></div>
-                        <div class="column-39 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/How-to-use-app.png" alt=""><div class="div-block-29"><div class="text-block-69">How to use the App</div></div></a></div>
-                        <div class="column-40 w-col w-col-4"><a href="/learning/1" class="link-block-19 w-inline-block"><img src="images/Buying-Properties.png" alt=""><div class="div-block-29"><div class="text-block-69">Buying Property</div></div></a></div>
-                    </div>
+                    {{--trending--}}
+                    @foreach($trending->chunk(3) as $trendingChunk)
+                        <div class="w-row">
+                            @foreach($trendingChunk as $article)
+                                <div class="column-38 w-col w-col-4">
+                                    <a href="/learning/{{ $article->id }}" class="link-block-19 w-inline-block">
+                                        <img src="{{ $article->images->full->source_url }}" style="height: 300px;" alt="">
+                                        <div class="div-block-29">
+                                            <div class="text-block-69">{{ $article->title->rendered }}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

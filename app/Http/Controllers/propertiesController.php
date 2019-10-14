@@ -94,6 +94,7 @@ class propertiesController extends Controller
         });
 
         $_SESSION['plots'] = [];
+
         array_filter($_SESSION['properties'], function ($post) {
             $term = "wp:term";
             foreach($post->_embedded->$term as $terms):
@@ -106,6 +107,7 @@ class propertiesController extends Controller
         });
 
         $_SESSION['sale'] = [];
+
         array_filter($_SESSION['properties'], function ($post) {
             $term = "wp:term";
             foreach($post->_embedded->$term as $terms):
@@ -117,12 +119,27 @@ class propertiesController extends Controller
             endforeach;
         });
 
+        $_SESSION['articles'] = [];
+
+        array_filter($_SESSION['properties'], function ($post) {
+            $term = "wp:term";
+            foreach($post->_embedded->$term as $terms):
+                foreach ($terms as $term):
+                    if (strtolower($term->name) === 'article'):
+                        $_SESSION['articles'][] = $post;
+                    endif;
+                endforeach;
+            endforeach;
+        });
+
+        $articles = array_slice($_SESSION['articles'], 0, 2);
+
         $banner_column = $_SESSION['banner_columns'];
 
         $plots = collect($_SESSION['plots']);
 
         $sale = collect($_SESSION['sale']);
 
-        return view('properties', compact('banner_column', 'plots', 'sale'));
+        return view('properties', compact('banner_column', 'plots', 'sale', 'articles'));
     }
 }

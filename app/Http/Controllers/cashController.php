@@ -93,8 +93,23 @@ class cashController extends Controller
             endforeach;
         });
 
+        $_SESSION['articles'] = [];
+
+        array_filter($_SESSION['cash'], function ($post) {
+            $term = "wp:term";
+            foreach($post->_embedded->$term as $terms):
+                foreach ($terms as $term):
+                    if (strtolower($term->name) === 'article'):
+                        $_SESSION['articles'][] = $post;
+                    endif;
+                endforeach;
+            endforeach;
+        });
+
         $banner_column = $_SESSION['banner_columns'];
 
-        return view('cash', compact('banner_column'));
+        $articles = array_slice($_SESSION['articles'], 0, 2);
+
+        return view('cash', compact('banner_column', 'articles'));
     }
 }

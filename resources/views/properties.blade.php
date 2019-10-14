@@ -25,14 +25,15 @@
                     @endforeach
                 </div>
             </div>
-            <div class="column-41 w-col w-col-3">
-                <div class="text-block-50">Housing Articles</div>
-                <div class="div-block-23">
-                    <div class="text-block-51">Affordable Housing Program</div>
-                    <div class="text-block-52">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div><a href="single.html" class="link-4">LEARN MORE</a></div>
-                <div class="div-block-23">
-                    <div class="text-block-51">Affordable Housing Program</div>
-                    <div class="text-block-52">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div><a href="single.html" class="link-4">LEARN MORE</a></div>
+            <div class="w-col w-col-3">
+                <div class="text-block-50">Housing Matters Articles</div>
+                @foreach($articles as $article)
+                    <div class="div-block-23">
+                        <div class="text-block-51">{{ $article->title->rendered }}</div>
+                        <div class="text-block-52">{!! $article->excerpt->rendered !!}</div>
+                        <a href="learning/{{ $article->id }}" class="link-4">LEARN MORE</a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

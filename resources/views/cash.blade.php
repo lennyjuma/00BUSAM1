@@ -9,7 +9,8 @@
                 <div class="text-block-46">GET INSTANT LOANS</div>
                 <div class="text-block-47">{{ $column->title->rendered }}</div>
             </div>
-            <img src="{{ $column->images->full->source_url }}" srcset="{{ $column->images->medium->source_url }} 500w, {{ $column->images->full->source_url }} 800w, {{ $column->images->full->source_url }} 1080w, {{ $column->images->full->source_url }} 1600w, {{ $column->images->full->source_url }} 1903w" sizes="(max-width: 1903px) 100vw, 1903px" alt="">
+            <img src="{{ $column->images->full->source_url }}"
+                 srcset="{{ $column->images->medium->source_url }} 500w, {{ $column->images->full->source_url }} 800w, {{ $column->images->full->source_url }} 1080w, {{ $column->images->full->source_url }} 1600w, {{ $column->images->full->source_url }} 1903w" sizes="(max-width: 1903px) 100vw, 1903px" alt="">
         @endforeach
     </div>
     <div class="base">
@@ -27,12 +28,13 @@
             </div>
             <div class="w-col w-col-3">
                 <div class="text-block-50">Money Matters Articles</div>
-                <div class="div-block-23">
-                    <div class="text-block-51">Affordable Housing Program</div>
-                    <div class="text-block-52">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div><a href="#" class="link-4">LEARN MORE</a></div>
-                <div class="div-block-23">
-                    <div class="text-block-51">Affordable Housing Program</div>
-                    <div class="text-block-52">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div><a href="#" class="link-4">LEARN MORE</a></div>
+                @foreach($articles as $article)
+                    <div class="div-block-23">
+                        <div class="text-block-51">{{ $article->title->rendered }}</div>
+                        <div class="text-block-52">{!! $article->excerpt->rendered !!}</div>
+                        <a href="learning/{{ $article->id }}" class="link-4">LEARN MORE</a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

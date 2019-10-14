@@ -1,0 +1,7 @@
+.notifications {
+    display: flex;
+    .content-view {
+        flex-direction: row;
+        max-width: calc(98vw - 64px);
+    }
+}
