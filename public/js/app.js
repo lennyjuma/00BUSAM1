@@ -121620,8 +121620,8 @@ function doSec() {
   // generate tkn
   return new Promise(function (resolve, reject) {
     cms.namespace('jwt-auth/v1').token().create({
-      username: 'BodySculpt',
-      password: '@bodysculptcms'
+      username: 'BusamHoldings',
+      password: '@busamholdingscms2019'
     }).then(function (response) {
       resolve(response);
     })["catch"](function (error) {

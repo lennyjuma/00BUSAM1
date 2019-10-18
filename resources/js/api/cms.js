@@ -15,8 +15,8 @@ function doSec() {
     // generate tkn
     return new Promise((resolve, reject) => {
         cms.namespace( 'jwt-auth/v1' ).token().create({
-            username: 'BodySculpt',
-            password: '@bodysculptcms'
+            username: 'BusamHoldings',
+            password: '@busamholdingscms2019'
         }).then( ( response ) => {
             resolve(response);
         }).catch(error => {
@@ -127,11 +127,11 @@ function createAgent(payload) {
     let token = payload.token;
     // create post
     return new Promise((resolve, reject) => {
-        cms.namespace( 'wp/v2' ).posts().create({
+        cms.namespace( 'wp/v2' ).posts().setHeaders({
+            Authorization: `Bearer ${token}`
+        }).create({
             ...payload.postContent,
             status: 'publish'
-        }).setHeaders({
-            Authorization: `Bearer ${token}`
         }).then((result) => {
             let dataBack = {
                 ...result
