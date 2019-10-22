@@ -1054,10 +1054,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       drawer: false,
       drawer2: false,
       direction: 'rtl',
-      totalDoctors: null,
+      totalMembers: null,
       totalServices: null,
       totalPublications: null,
-      totalOffers: null,
+      totaljobs: null,
       appointmentdata: null,
       servicedata: null,
       datesdata: null,
@@ -1076,10 +1076,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.appointmentId = id;
     },
     setPublicationsData: function setPublicationsData() {
-      this.totalOffers = this.offers;
+      this.totaljobs = this.jobs;
       this.totalPublications = this.publications;
       this.totalServices = this.services;
-      this.totalDoctors = this.doctors;
+      this.totalMembers = this.members;
     },
     handleAdd: function handleAdd() {
       this.drawer2 = true;
@@ -1192,9 +1192,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])({
-    offers: function offers(state) {
+    jobs: function jobs(state) {
       var total = 0;
-      state.offers.forEach(function () {
+      state.jobs.forEach(function () {
         total = total + 1;
       });
       return total;
@@ -1213,9 +1213,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       return total;
     },
-    doctors: function doctors(state) {
+    members: function members(state) {
       var total = 0;
-      state.doctors.forEach(function () {
+      state.members.forEach(function () {
         total = total + 1;
       });
       return total;
@@ -2398,8 +2398,8 @@ var render = function() {
                 "el-card",
                 { staticClass: "main-card", attrs: { shadow: "hover" } },
                 [
-                  _vm._v("\n                    Offers\n                    "),
-                  _c("span", [_vm._v(_vm._s(_vm.totalOffers))])
+                  _vm._v("\n                    Jobs\n                    "),
+                  _c("span", [_vm._v(_vm._s(_vm.totaljobs))])
                 ]
               )
             ],
@@ -2451,7 +2451,7 @@ var render = function() {
                 { staticClass: "main-card", attrs: { shadow: "hover" } },
                 [
                   _vm._v("\n                    Team\n                    "),
-                  _c("span", [_vm._v(_vm._s(_vm.totalDoctors))])
+                  _c("span", [_vm._v(_vm._s(_vm.totalMembers))])
                 ]
               )
             ],

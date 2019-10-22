@@ -45,8 +45,8 @@
             </div>
             <div class="column-44 w-col w-col-6">
                 @foreach($banner_column as $column )
-                    <a href="{{ $column->metadata->appLink[0] }}" class="link-5">Click to download mobile application from google play store</a>
-                    <a href="{{ $column->metadata->appLink[0] }}" class="link-block-16 w-inline-block"><img src="images/5d6f852859e5515cb00113db_Download.png" alt="" class="image-25"></a>
+                    <a href="{{ $column->metadata->appLink[0] }}" target="_blank" class="link-5">Click to download mobile application from google play store</a>
+                    <a href="{{ $column->metadata->appLink[0] }}" target="_blank" class="link-block-16 w-inline-block"><img src="images/5d6f852859e5515cb00113db_Download.png" alt="" class="image-25"></a>
                 @endforeach
             </div>
         </div>

@@ -56,8 +56,20 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <router-link to="/offers" tag="li" class="nav-link" index="4">
-                        <i class="el-icon-discount"></i>
-                        <span class="menu-list">Offers</span>
+                        <i class="el-icon-s-cooperation"></i>
+                        <span class="menu-list">Jobs</span>
+                    </router-link>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <router-link to="/media" tag="li" class="nav-link" index="4">
+                        <i class="el-icon-video-camera-solid"></i>
+                        <span class="menu-list">Media</span>
+                    </router-link>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <router-link to="/about" tag="li" class="nav-link" index="4">
+                        <i class="el-icon-paperclip"></i>
+                        <span class="menu-list">About</span>
                     </router-link>
                 </li>
             </ul>

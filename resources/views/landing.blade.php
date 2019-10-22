@@ -10,7 +10,7 @@
             </div>
             <div data-delay="0" class="w-dropdown">
                 <div class="dropdown-toggle-2 w-dropdown-toggle">
-                    <div class="text-block-70">see my options</div>
+                    <div class="text-block-70">see my options </div>
                 </div>
                 <nav class="w-dropdown-list"><a href="properties" class="props w-dropdown-link">Buy a Property</a><a href="cash" class="prop2 w-dropdown-link">Get a Small Loan</a><a href="capital" class="prop3 w-dropdown-link">Fund an Investment</a></nav>
             </div>

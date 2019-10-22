@@ -37,6 +37,16 @@ export function createRouter(){
                 path: '/offers',
                 name: 'offers',
                 component: () => import('./views/Offers.vue')
+            },
+            {
+                path: '/media',
+                name: 'media',
+                component: () => import('./views/Media.vue')
+            },
+            {
+                path: '/about',
+                    name: 'about',
+                component: () => import('./views/About.vue')
             }
         ]
     })

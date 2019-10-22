@@ -218,7 +218,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         content: null
       },
       selectedImage: null,
-      selectedDoctor: null,
+      selectedMember: null,
       featuredImg: null,
       postContext: null,
       postOfInterest: null
@@ -239,19 +239,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     populatePostData: function populatePostData(post_id) {
       var _this = this;
 
-      this.doctors.forEach(function (doctor) {
-        if (doctor.id === post_id) {
-          _this.selectedDoctor = doctor;
+      this.teamMembers.forEach(function (member) {
+        if (member.id === post_id) {
+          _this.selectedMember = member;
         }
       });
-      console.log('Our Doctor Profile', this.selectedDoctor);
+      console.log('Our Member Profile', this.selectedMember);
     },
     doDataBinding: function doDataBinding() {
       var _this2 = this;
 
-      _.filter(this.doctors, function (doctor) {
-        if (doctor.id === _this2.postId) {
-          _this2.postOfInterest = doctor;
+      _.filter(this.teamMembers, function (member) {
+        if (member.id === _this2.postId) {
+          _this2.postOfInterest = member;
         }
       });
 
@@ -262,7 +262,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.specialization = this.postOfInterest['metadata']['specialization'] !== undefined ? this.postOfInterest['metadata']['specialization'][0] : '';
       this.form.excerpt = this.postOfInterest.excerpt.rendered;
       this.form.content = this.postOfInterest.content.rendered;
-      this.featuredImg = this.postOfInterest['_embedded']['wp:featuredmedia'] !== undefined ? this.postOfInterest['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url'] : '';
+      this.featuredImg = this.postOfInterest['_embedded']['wp:featuredmedia'] !== undefined ? this.postOfInterest['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['source_url'] : '';
     }
   },
   mounted: function mounted() {
@@ -279,8 +279,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectedPost: function selectedPost(state) {
       return state.selectedPost;
     },
-    doctors: function doctors(state) {
-      return state.doctors;
+    teamMembers: function teamMembers(state) {
+      return state.members;
     }
   })
 });
@@ -484,8 +484,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])({
-    doctors: function doctors(state) {
-      return state.doctors;
+    members: function members(state) {
+      return state.members;
     },
     activeTab: function activeTab() {
       return this.activeChunk.filter();
@@ -779,7 +779,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header py-3" }, [
       _c("p", { staticClass: "text-primary m-0 font-weight-bold" }, [
-        _vm._v("Doctor Details")
+        _vm._v("Team Members Details")
       ])
     ])
   },
@@ -980,7 +980,7 @@ var render = function() {
                       },
                       [
                         _c("jw-pagination", {
-                          attrs: { pageSize: _vm.pageSize, items: _vm.doctors },
+                          attrs: { pageSize: _vm.pageSize, items: _vm.members },
                           on: { changePage: _vm.onChangePage }
                         })
                       ],

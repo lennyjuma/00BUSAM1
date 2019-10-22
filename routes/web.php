@@ -11,8 +11,6 @@
 |
 */
 
-use App\Http\Controllers\landingController;
-
 Route::get('/', 'landingController@index')->name('landing.index');
 
 Route::get('/about', 'aboutController@index')->name('about.index');

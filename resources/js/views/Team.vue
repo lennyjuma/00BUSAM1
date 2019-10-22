@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                    <jw-pagination :pageSize="pageSize" :items="doctors" @changePage="onChangePage"></jw-pagination>
+                                    <jw-pagination :pageSize="pageSize" :items="members" @changePage="onChangePage"></jw-pagination>
                                 </nav>
                             </div>
                         </div>
@@ -179,8 +179,8 @@
             }
         },
         computed: mapState({
-            doctors(state) {
-                return state.doctors
+            members(state) {
+                return state.members
             },
             activeTab() {
                 return this.activeChunk.filter()

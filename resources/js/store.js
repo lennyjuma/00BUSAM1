@@ -12,8 +12,8 @@ export function createStore() {
             cmsSec: null,
             selectedPost: null,
             publications: [],
-            doctors: [],
-            offers: [],
+            members: [],
+            jobs: [],
             services: [],
             categories: [],
             tags: [],
@@ -33,11 +33,11 @@ export function createStore() {
             setPublication(state, payload = []) {
                 state.publications = payload;
             },
-            setDoctors(state, payload = []) {
-                state.doctors = payload;
+            setTeamMembers(state, payload = []) {
+                state.members = payload;
             },
-            setOffers(state, payload = []) {
-                state.offers = payload;
+            setjobs(state, payload = []) {
+                state.jobs = payload;
             },
             setServices(state, payload = []) {
                 state.services = payload;
@@ -202,19 +202,19 @@ export function createStore() {
             },
             doAddPosts({commit}, payload) {
                 let publications = [];
-                let doctors = [];
-                let services = [];
-                let offers = [];
+                let teamMembers = [];
+                let combiServices = [];
+                let jobs = [];
                 _.filter(payload, (post) => {
                     _.forEach(post.categories, category => {
                         if (category === 1) {
-                            doctors.push(post)
+                            teamMembers.push(post)
                         }
-                        if (category === 2) {
+                        if (category === 37) {
                             publications.push(post)
                         }
-                        if (category === 3) {
-                            offers.push(post)
+                        if (category === 38) {
+                            jobs.push(post)
                         }
                         if (category === 4) {
                             services.push(post)
@@ -226,16 +226,16 @@ export function createStore() {
                     commit('setPublication', publications);
                 }
 
-                if (doctors.length > 0) {
-                    commit('setDoctors', doctors);
+                if (teamMembers.length > 0) {
+                    commit('setTeamMembers', teamMembers);
                 }
 
                 if (services.length > 0) {
                     commit('setServices', services);
                 }
 
-                if (offers.length > 0) {
-                    commit('setOffers', offers);
+                if (jobs.length > 0) {
+                    commit('setjobs', jobs);
                 }
             }
         }

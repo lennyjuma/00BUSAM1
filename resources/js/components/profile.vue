@@ -24,7 +24,7 @@
                             <div class="col">
                                 <div class="card shadow mb-3">
                                     <div class="card-header py-3">
-                                        <p class="text-primary m-0 font-weight-bold">Doctor Details</p>
+                                        <p class="text-primary m-0 font-weight-bold">Team Members Details</p>
                                     </div>
                                     <div class="card-body">
                                             <div class="form-row">
@@ -105,7 +105,7 @@
                     content: null
                 },
                 selectedImage: null,
-                selectedDoctor: null,
+                selectedMember: null,
                 featuredImg: null,
                 postContext: null,
                 postOfInterest: null
@@ -124,18 +124,18 @@
                 this.selectedImage = event.target.files[0]
             },
             populatePostData(post_id) {
-                this.doctors.forEach(doctor => {
-                    if (doctor.id === post_id) {
-                        this.selectedDoctor = doctor
+                this.teamMembers.forEach(member => {
+                    if (member.id === post_id) {
+                        this.selectedMember = member
                     }
                 });
 
-                console.log('Our Doctor Profile', this.selectedDoctor);
+                console.log('Our Member Profile', this.selectedMember);
             },
             doDataBinding() {
-                _.filter(this.doctors, (doctor) => {
-                    if (doctor.id === this.postId) {
-                        this.postOfInterest = doctor;
+                _.filter(this.teamMembers, (member) => {
+                    if (member.id === this.postId) {
+                        this.postOfInterest = member;
                     }
                 });
 
@@ -146,7 +146,7 @@
                 this.form.specialization = (this.postOfInterest['metadata']['specialization'] !== undefined) ? this.postOfInterest['metadata']['specialization'][0]: '';
                 this.form.excerpt = this.postOfInterest.excerpt.rendered;
                 this.form.content = this.postOfInterest.content.rendered;
-                this.featuredImg = (this.postOfInterest['_embedded']['wp:featuredmedia'] !== undefined) ? this.postOfInterest['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url'] : '';
+                this.featuredImg = (this.postOfInterest['_embedded']['wp:featuredmedia'] !== undefined) ? this.postOfInterest['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['source_url'] : '';
             }
         },
         mounted() {
@@ -162,8 +162,8 @@
             selectedPost(state) {
                 return state.selectedPost
             },
-            doctors(state) {
-                return state.doctors
+            teamMembers(state) {
+                return state.members
             }
         })
     }

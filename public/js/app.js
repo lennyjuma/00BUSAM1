@@ -3597,12 +3597,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    // this.getAPISec();
-    // this.doGetBooking();
+    this.getAPISec(); // this.doGetBooking();
     // this.getDBSlots();
     // this.getDBServices();
     // this.getDBDates();
-    this.$router.push('/dashboard');
   },
   computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     jwttoken: function jwttoken(state) {
@@ -121709,11 +121707,11 @@ function createAgent(payload) {
   var token = payload.token; // create post
 
   return new Promise(function (resolve, reject) {
-    cms.namespace('wp/v2').posts().create(_objectSpread({}, payload.postContent, {
-      status: 'publish'
-    })).setHeaders({
+    cms.namespace('wp/v2').posts().setHeaders({
       Authorization: "Bearer ".concat(token)
-    }).then(function (result) {
+    }).create(_objectSpread({}, payload.postContent, {
+      status: 'publish'
+    })).then(function (result) {
       var dataBack = _objectSpread({}, result);
 
       if (payload.hasMedia) {
@@ -121758,7 +121756,7 @@ function reader(payload) {
 
   function fetcher() {
     return new Promise(function (resolve, reject) {
-      cms.namespace('wp/v2').posts().author(3).embed().perPage(100).setHeaders({
+      cms.namespace('wp/v2').posts().author(4).embed().perPage(100).setHeaders({
         Authorization: "Bearer ".concat(token)
       }).get().then(function (response) {
         resolve(response);
@@ -122410,6 +122408,18 @@ function createRouter() {
       component: function component() {
         return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./views/Offers.vue */ "./resources/js/views/Offers.vue"));
       }
+    }, {
+      path: '/media',
+      name: 'media',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/Media.vue */ "./resources/js/views/Media.vue"));
+      }
+    }, {
+      path: '/about',
+      name: 'about',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/About.vue */ "./resources/js/views/About.vue"));
+      }
     }]
   });
 }
@@ -122442,8 +122452,8 @@ function createStore() {
       cmsSec: null,
       selectedPost: null,
       publications: [],
-      doctors: [],
-      offers: [],
+      members: [],
+      jobs: [],
       services: [],
       categories: [],
       tags: [],
@@ -122466,13 +122476,13 @@ function createStore() {
         var payload = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
         state.publications = payload;
       },
-      setDoctors: function setDoctors(state) {
+      setTeamMembers: function setTeamMembers(state) {
         var payload = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-        state.doctors = payload;
+        state.members = payload;
       },
-      setOffers: function setOffers(state) {
+      setjobs: function setjobs(state) {
         var payload = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-        state.offers = payload;
+        state.jobs = payload;
       },
       setServices: function setServices(state) {
         var payload = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
@@ -122652,22 +122662,22 @@ function createStore() {
       doAddPosts: function doAddPosts(_ref12, payload) {
         var commit = _ref12.commit;
         var publications = [];
-        var doctors = [];
-        var services = [];
-        var offers = [];
+        var teamMembers = [];
+        var combiServices = [];
+        var jobs = [];
 
         _.filter(payload, function (post) {
           _.forEach(post.categories, function (category) {
             if (category === 1) {
-              doctors.push(post);
+              teamMembers.push(post);
             }
 
-            if (category === 2) {
+            if (category === 37) {
               publications.push(post);
             }
 
-            if (category === 3) {
-              offers.push(post);
+            if (category === 38) {
+              jobs.push(post);
             }
 
             if (category === 4) {
@@ -122680,16 +122690,16 @@ function createStore() {
           commit('setPublication', publications);
         }
 
-        if (doctors.length > 0) {
-          commit('setDoctors', doctors);
+        if (teamMembers.length > 0) {
+          commit('setTeamMembers', teamMembers);
         }
 
         if (services.length > 0) {
           commit('setServices', services);
         }
 
-        if (offers.length > 0) {
-          commit('setOffers', offers);
+        if (jobs.length > 0) {
+          commit('setjobs', jobs);
         }
       }
     }

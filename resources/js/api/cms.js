@@ -182,7 +182,7 @@ function reader(payload) {
 
     function fetcher() {
         return new Promise((resolve, reject) => {
-            cms.namespace( 'wp/v2' ).posts().author(3).embed().perPage(100).setHeaders({
+            cms.namespace( 'wp/v2' ).posts().author(4).embed().perPage(100).setHeaders({
                 Authorization: `Bearer ${token}`
             }).get().then( ( response ) => {
                 resolve(response);

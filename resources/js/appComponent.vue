@@ -15,12 +15,11 @@
             }
         },
         mounted() {
-            // this.getAPISec();
+            this.getAPISec();
             // this.doGetBooking();
             // this.getDBSlots();
             // this.getDBServices();
             // this.getDBDates();
-            this.$router.push('/dashboard')
         },
         computed: mapState({
             jwttoken(state) {

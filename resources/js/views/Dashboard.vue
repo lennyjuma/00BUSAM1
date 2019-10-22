@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col-md-6 col-xl-3 mb-4">
                     <el-card class="main-card" shadow="hover">
-                        Offers
-                        <span>{{totalOffers}}</span>
+                        Jobs
+                        <span>{{totaljobs}}</span>
                     </el-card>
                 </div>
                 <div class="col-md-6 col-xl-3 mb-4">
@@ -27,7 +27,7 @@
                 <div class="col-md-6 col-xl-3 mb-4">
                     <el-card class="main-card" shadow="hover">
                         Team
-                        <span>{{totalDoctors}}</span>
+                        <span>{{totalMembers}}</span>
                     </el-card>
                 </div>
             </div>
@@ -127,10 +127,10 @@
                 drawer: false,
                 drawer2: false,
                 direction: 'rtl',
-                totalDoctors: null,
+                totalMembers: null,
                 totalServices: null,
                 totalPublications: null,
-                totalOffers: null,
+                totaljobs: null,
                 appointmentdata: null,
                 servicedata: null,
                 datesdata: null,
@@ -149,10 +149,10 @@
                 this.appointmentId = id;
             },
             setPublicationsData () {
-                this.totalOffers = this.offers;
+                this.totaljobs = this.jobs;
                 this.totalPublications = this.publications;
                 this.totalServices = this.services;
-                this.totalDoctors = this.doctors;
+                this.totalMembers = this.members;
             },
             handleAdd () {
                 this.drawer2 = true;
@@ -240,9 +240,9 @@
             }
         },
         computed: mapState({
-            offers(state) {
+            jobs(state) {
                 let total = 0;
-                state.offers.forEach(() => {
+                state.jobs.forEach(() => {
                     total = total + 1
                 });
                 return total
@@ -261,9 +261,9 @@
                 });
                 return total
             },
-            doctors(state) {
+            members(state) {
                 let total = 0;
-                state.doctors.forEach(() => {
+                state.members.forEach(() => {
                     total = total + 1
                 });
                 return total
